@@ -9,6 +9,9 @@ class Pessoa:
     def cumprimentar(self):
         return f'Olá {id(self)}'
 
+    @staticmethod
+    def metodo_estatico():
+        return 42
 if __name__ == '__main__':
     renzo = Pessoa(nome='Renzo')
     luciano = Pessoa(renzo, nome='Luciano')
@@ -19,6 +22,11 @@ if __name__ == '__main__':
     for filho in luciano.filhos:
         print(filho.nome)
     del luciano.filhos
-    print(luciano.__dict__)
+    luciano.olhos = 1
+    del luciano.olhos
     print(renzo.__dict__)
+    print(luciano.__dict__)
+    Pessoa.olhos = 3
     print(Pessoa.olhos)
+    print(luciano.olhos)
+    print(id(Pessoa.olhos), id(luciano.olhos), id(renzo.olhos))
