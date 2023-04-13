@@ -93,7 +93,7 @@ Exemplo:
     >>> carro.calcular_direcao()
     'Oeste'"""
 
-class Motor:
+class Motor():
     def __init__(self):
         self.velocidade = 0
     def acelerar(self):
@@ -103,3 +103,48 @@ class Motor:
             self.velocidade -= 1
         elif self.velocidade >= 2:
             self.velocidade -= 2
+
+class Direcao():
+    def __init__(self):
+        self.valor = 'Norte'
+    def girar_a_direita(self):
+        if self.valor == 'Norte':
+            self.valor = 'Leste'
+
+        elif self.valor == 'Leste':
+            self.valor = 'Sul'
+
+        elif self.valor =='Sul':
+            self.valor = 'Oeste'
+
+        elif self.valor == 'Oeste':
+            self.valor = 'Norte'
+
+    def girar_a_esquerda(self):
+        if self.valor == 'Norte':
+            self.valor = 'Oeste'
+
+        elif self.valor == 'Oeste':
+            self.valor = 'Sul'
+
+        elif self.valor == 'Sul':
+            self.valor = 'Leste'
+
+        elif self.valor == 'Leste':
+            self.valor  = 'Norte'
+
+class Carro(Motor, Direcao):
+    def __init__(self, motor, direcao):
+        self.motor = motor
+        self.direcao = direcao
+        self.valor = 'Norte'
+        self.velocidade = 0
+        self.acelerar()
+        self.frear()
+        self.girar_a_direita()
+        self.girar_a_esquerda()
+    def calcular_direcao(self):
+        print(f"'{self.valor}'")
+
+    def calcular_velocidade(self):
+        print(self.velocidade)
